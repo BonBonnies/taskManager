@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager - Login</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+        </div>
+
+        <button type="submit">Login</button>
+      </form>
+      <p id="registrationLink"> Don't have an account? <a href="registration.html">Register here</a></p>
+    </div>
+  <script>
+    // Handle login form submission
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // Send AJAX request to login endpoint
+      fetch('https://localhost:3000/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: username, password: password }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Login failed');
+        }
+        // Redirect to tasks page on successful login
+        window.location.href = "tasks.html";
+      })
+      .catch(error => {
+        console.error('Login failed:', error);
+        // Display error message to user
+        alert('Login failed. Please try again.');
+      });
+    });
+  </script>
+</body>
+
+</html>

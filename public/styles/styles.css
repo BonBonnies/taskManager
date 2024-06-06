@@ -1,0 +1,199 @@
+/* Common styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('task.png');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+
+.container {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgba(174, 201, 230, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.7); /* White color with 70% opacity */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+}
+
+h2 {
+  margin-top: 55px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+input[type="text"],
+input[type="password"],
+button[type="submit"] {
+  width: 15%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  margin-right: 20px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+  background-color: #4579ad;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e4d92;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #4579ad;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+th:first-child {
+  border-top-left-radius: 10px;
+}
+
+th:last-child {
+  border-top-right-radius: 10px;
+}
+
+#openAddTaskButton {
+  display: block;
+  margin: 20px auto;
+  margin-top: 70px;
+  margin-bottom: 30px;
+  background-color: #4579ad;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#openAddTaskButton:hover {
+  background-color: #3e4d92;
+}
+
+#addTaskSection {
+  display: none;
+  margin-top: 20px;
+}
+
+#addTaskForm {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="date"] {
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+  background-color: #455470;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the "Delete" button */
+.delete-button {
+  background-color: #dc3545; /* Red color for deletion */
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.delete-button:hover {
+  background-color: #c82333; 
+}
+
+#logoutButton {
+  margin: 3px;
+  background-color: #455470;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#logoutButton:hover {
+  background-color: #3e4d92;
+}
+
+/*other stuffs */
+
+#registrationLink {
+  margin-top: 30px;
+  margin-right: 25px;
+  text-align: center;
+}
+
+#loginForm {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 10px; 
+  text-align: center; 
+  margin-right:75px
+} 

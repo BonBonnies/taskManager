@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager - Registration</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Registration</h2>
+    <form id="registrationForm">
+      <div class="form-group">
+        <input type="text" id="regUsername" placeholder="Username" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="regPassword" placeholder="Password" required>
+      </div>
+      <div class="form-group" style="color: red;">
+        Password needs 8 characters, and it should include at least 1 <br>
+        upper-case letter, 1 lower-case, 1 number and 1 sepcial character.
+      </div>
+      <div class="form-group">
+        <button type="submit">Register</button>
+
+      </div>
+    </form>
+    <div class="error-message" id="errorMessage" style="display: none;"></div>
+  </div>
+
+  <script>
+    function isGoodPassword(password) {
+      // Define the criteria for a good password
+      var minLength = 8;
+      var hasUppercase = /[A-Z]/.test(password);
+      var hasLowercase = /[a-z]/.test(password);
+      var hasNumber = /\d/.test(password);
+      var hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password);
+
+      // Check if the password meets all the criteria
+      return password.length >= minLength &&
+        hasUppercase &&
+        hasLowercase &&
+        hasNumber &&
+        hasSpecialChar;
+    }
+    document.getElementById('registrationForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      var username = document.getElementById('regUsername').value;
+      var password = document.getElementById('regPassword').value;
+
+
+      if (!isGoodPassword(password)) {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = `Password does not meet requirements. Please try again.`;
+        return
+      }
+
+      fetch('https://localhost:3000/register', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: username, password: password }),
+      })
+        .then(response => {
+          if (!response.ok) {
+            return response.json().then(errorData => {
+              throw new Error(`${response.status}: ${errorData.message}`);
+            });
+          }
+          return response.json();
+        })
+        .then(data => {
+          window.location.href = "index.html";
+        })
+        .catch(error => {
+          console.error('Registration failed:', error);
+          const errorMessage = document.getElementById('errorMessage');
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = `Registration failed (${error.message}). Please try again.`;
+        });
+    });
+  </script>
+</body>
+
+</html>

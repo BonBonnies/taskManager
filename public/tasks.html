@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button id="logoutButton">Logout</button>
+    <div id="app" class="container">
+        <h1>Task Manager</h1>
+
+        <h2>Past Tasks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Due Date</th>
+                    <th>Action</th> 
+                    <th>Completed</th>
+                </tr>
+            </thead>
+            <tbody id="oldTaskList"></tbody>
+        </table>
+        <h2>Pending Tasks</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Due Date</th>
+                    <th>Action</th> 
+                    <th>Completed</th>
+                </tr>
+            </thead>
+            <tbody id="newTaskList"></tbody>
+        </table>
+
+
+        <!-- Button to open the add task section -->
+        <button id="openAddTaskButton">Add Task</button>
+
+        <!-- Add Task section -->
+        <div id="addTaskSection">
+            <h2>Add Task</h2>
+            <form id="addTaskForm">
+                <label for="description">Description:</label>
+                <input type="text" id="description" required>
+
+                <label for="dueDate">Due Date:</label>
+                <input type="date" id="dueDate" required>
+
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/taskController.js"></script>
+    <script type="module" src="scripts/app.js"></script>
+
+    <script>
+        var modal = document.getElementById('addTaskSection');
+        // Get the current display status of the addTaskSection
+        var modalDisplayStyle = modal.style.display;
+
+        // When the user clicks the button, toggle the modal 
+        document.getElementById('openAddTaskButton').addEventListener('click', function () {
+            // If the addTaskSection is currently visible, hide it. Otherwise, show it.
+            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+        });
+    </script>
+    <script>
+        // Handle logout button click event
+        document.getElementById('logoutButton').addEventListener('click', function () {
+            // Send logout request to the server
+            fetch('http://localhost:3000/logout', {
+                method: 'POST',
+                credentials: 'include',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Logout failed');
+                    }
+                    // Redirect to the login page on successful logout
+                    window.location.href = "index.html";
+                })
+                .catch(error => {
+                    console.error('Logout failed:', error);
+                    // Display error message to user
+                    alert('Logout failed. Please try again.');
+                });
+        });
+    </script>
+</body>
+
+</html>
